@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  navegador_vpn:
+    build: .
+    container_name: navegador_vpn
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    volumes:
+      - ./openvpn-config:/etc/openvpn
+      - ./navegador-profile:/root/.mozilla
+    ports:
+      - "5900:5900"
+    restart: unless-stopped
+    command: /start.sh

@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  navegador_vpn_novnc:
+    build: .
+    container_name: navegador_vpn_novnc
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    volumes:
+      - ./openvpn-config:/etc/openvpn
+      - ./navegador-profile:/root/.mozilla
+    ports:
+      - "14500:14500"  # Acesso ao navegador via noVNC (browser)
+    restart: unless-stopped
+    command: /start.sh

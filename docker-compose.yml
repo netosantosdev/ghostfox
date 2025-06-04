@@ -3,17 +3,18 @@ version: '3.8'
 services:
   ghostfox:
     build: .
-    container_name: ghostfox-v4.3
+    container_name: ghostfox-v4.5
     hostname: ghostfox
     restart: unless-stopped
     ports:
-      - "5901:5901"  # Porta VNC
+      - "5902:5902"  # Porta VNC
     volumes:
       - ./vpn:/vpn:ro                        # Configuração da VPN
       - ./scripts:/scripts:ro                # Scripts internos
       - ./browser-profile:/root/.config/chromium/Default  # Perfil persistente opcional
+      - ./extensions/ghost-stealth:/root/extensions/ghost-stealth # Adiciona o ghost-steath 
     environment:
-      - DISPLAY=:1
+      - DISPLAY=:2
     shm_size: "512mb"
     security_opt:
       - seccomp:unconfined

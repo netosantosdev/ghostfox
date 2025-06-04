@@ -5,7 +5,7 @@ FROM debian:11-slim
 
 # Variáveis de Ambiente
 ENV DEBIAN_FRONTEND=noninteractive
-ENV DISPLAY=:1
+ENV DISPLAY=:2
 
 # Instalação de Dependências
 RUN apt-get update && apt-get install -y \

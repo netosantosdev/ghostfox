@@ -9,8 +9,8 @@ LOCAL_NETWORK="192.168.0.0/24"
 echo "[start.sh] Adicionando rota local para $LOCAL_NETWORK via $DOCKER_GATEWAY"
 ip route add "$LOCAL_NETWORK" via "$DOCKER_GATEWAY" || echo "[start.sh] Rota já existente ou falha ignorável"
 
-echo "[start.sh] Aguardando servidor X (:1)..."
-until xdpyinfo -display :1 >/dev/null 2>&1; do
+echo "[start.sh] Aguardando servidor X (:2)..."
+until xdpyinfo -display :2 >/dev/null 2>&1; do
         sleep 1
 done
 
@@ -21,8 +21,8 @@ chromium \
         --disable-gpu \
         --disable-software-rasterizer \
         --disable-dev-shm-usage \
-        --disable-extensions \
         --start-maximized \
+        --load-extension=/root/extensions/ghost-stealth \
         --password-store=basic \
         --user-data-dir=/root/.config/chromium \
         "https://ipm.com.br" &
